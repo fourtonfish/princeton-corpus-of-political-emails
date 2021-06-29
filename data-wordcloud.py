@@ -51,15 +51,16 @@ for i, x in df.groupby("state"):
         # max_words = 25,
         min_word_length = 3,
         stopwords = [
+            "Alex",
             "and",
+            "body_text",
             "for",
+            "REDACTED",
             "sta",
             "the",
-            "Alex",
-            "REDACTED",
-            "Unsubscribe Here",
-            "Unsubscribe",
             "this",
+            "Unsubscribe",
+            "URL",
             "view"
         ],
         colormap = "Greys"
@@ -75,3 +76,5 @@ for i, x in df.groupby("state"):
     plt.tight_layout(pad=0)
     # plt.show()
     wordcloud.to_file(f"images/{us_state_abbrev[i].lower()}.png")
+    with open(f"text/{us_state_abbrev[i].lower()}.txt", "w") as outfile:
+        outfile.write(", ".join(wordcloud.words_.keys()))
